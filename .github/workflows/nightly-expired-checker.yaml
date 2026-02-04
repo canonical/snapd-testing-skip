@@ -1,0 +1,61 @@
+name: Nightly expired skip checker
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-expired:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Install yq
+        run: sudo apt install -y yq
+
+      - name: Configure git
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+      
+      - name: Check skips
+        id: file-check
+        run: |
+          if ! [ -d skip ]; then
+            exit 0
+          fi
+          echo "expired=false" >> $GITHUB_OUTPUT
+          for file in "skip/"*; do
+            expire=$(yq -r '."skip-until"' "$file")
+            today=$(date "+%Y-%m-%d")
+            if [[ "$expire" < "$today" || "$expire" == "$today" ]]; then
+                git rm "$file"
+                git commit -m "chore: remove $file"
+                echo "expired=true" >> $GITHUB_OUTPUT
+            fi
+          done
+
+      - name: Create branch
+        if: ${{ steps.file-check.outputs.expired }}
+        id: create-branch
+        run: |
+          BRANCH="chore/remove-file-$(date +%s)-${{ github.run_number }}"
+          git checkout -b "$BRANCH"
+          git push --set-upstream origin "$BRANCH"
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+
+      - name: Open PR
+        if: ${{ steps.file-check.outputs.expired }}
+        run: |
+          gh pr create \
+            --title "Remove expired test skips" \
+            --body "" \
+            --base main \
+            --head "${{ steps.create-branch.outputs.branch }}"
