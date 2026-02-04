@@ -1,0 +1,4 @@
+spread-task: str()
+spread-system: str(required=False)
+skip-until: day()
+skip-reason: str()
