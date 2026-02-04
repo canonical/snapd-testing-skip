@@ -1,0 +1,72 @@
+name: Yaml verifier
+on:
+  pull_request:
+    branches: [ "main" ]
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  verify-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47.0.0
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Install yamale and yq
+        run: |
+          pip install yamale
+          sudo apt install -y yq
+
+      - name: Checkout snapd
+        uses: actions/checkout@v6
+        with:
+          repository: canonical/snapd
+          path: snapd
+
+      - name: Verify changed yaml files
+        env: 
+          MODIFIED: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          systems=$(yq -r '.backends | to_entries[] | .value.systems[] | keys | first' snapd/spread.yaml | sort -u)
+
+          IFS=' ' read -ra files <<< "$MODIFIED"
+          for file in "${files[@]}"; do
+            if grep -q '^skip/' <<<"$file" && ! grep -qE '^skip/skipped_test[0-9]+.yaml' <<<"$file"; then
+              echo "The file, $file, does not follow the naming convention of skipped_test\${i}.yaml"
+              exit 1
+            fi
+            if grep -qE "^skip/skipped_test.*.yaml" <<<"$file"; then
+              yamale -s schema.yaml "$file"
+              expire=$(yq -r '."skip-until"' "$file")
+              today=$(date "+%Y-%m-%d")
+              if ! [[ "$expire" > "$today" ]]; then
+                echo -e "Cannot have a same-day expiration date or a date in the past:.\n - Today's date: $today\n - Expire date: $expire"
+                exit 1
+              fi
+              system=$(yq -r '."spread-system" // "empty"' "$file")
+              if ! [[ "$system" = "empty" ]] && ! grep -q "$system" <<<"$systems"; then
+                echo "The specified spread system, $system, is not present in snapd's spread.yaml"
+                exit 1
+              fi
+              test=$(yq -r '."spread-task"' "$file")
+              if ! [ -f "snapd/$test/task.yaml" ]; then
+                echo "The specified spread task does not exist: snapd/$test/task.yaml"
+                exit 1
+              fi
+              if [[ "$test" == /* || "$test" == */ ]]; then
+                echo "The spread task ($test) may not begin or end with '/'"
+                exit 1
+              fi
+            fi
+          done
