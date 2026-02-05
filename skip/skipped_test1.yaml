@@ -1,4 +1,4 @@
 spread-task: tests/main/acz
 skip-until: 2026-02-06
 skip-reason: It's broken
-spread-system: ubuntu-28.04-64
+spread-system: ubuntu-26.04-64
