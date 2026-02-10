@@ -39,6 +39,7 @@ jobs:
           MODIFIED: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
           systems=$(yq -r '.backends | to_entries[] | .value.systems[] | keys | first' snapd/spread.yaml | sort -u)
+          backends=$(yq -r '.backends | to_entries[] | .key' snapd/spread.yaml | sort -u)
 
           IFS=' ' read -ra files <<< "$MODIFIED"
           for file in "${files[@]}"; do
@@ -55,8 +56,13 @@ jobs:
                 exit 1
               fi
               system=$(yq -r '."spread-system" // "empty"' "$file")
-              if ! [[ "$system" = "empty" ]] && ! grep -q "$system" <<<"$systems"; then
+              if ! [[ "$system" = "empty" ]] && ! grep -q "^$system$" <<<"$systems"; then
                 echo "The specified spread system, $system, is not present in snapd's spread.yaml"
+                exit 1
+              fi
+              backend=$(yq -r '."spread-backend" // "empty"' "$file")
+              if ! [[ "$backend" = "empty" ]] && ! grep -q "^$backend$" <<<"$backends"; then
+                echo "The specified spread backend, $backend, is not present in snapd's spread.yaml"
                 exit 1
               fi
               test=$(yq -r '."spread-task"' "$file")

@@ -15,6 +15,9 @@ properties:
    spread-system:
        type: string
        description: 'Name of spread system (if not specified, then task will be skipped on all systems)'
+   spread-backend:
+       type: string
+       description: 'Name of spread backend (if not specified, then task will be skipped on all backends)'
    skip-until:
        type: string
        format: date
