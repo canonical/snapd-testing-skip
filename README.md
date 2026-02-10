@@ -30,3 +30,41 @@ required:
    - skip-until
    - skip-reason
 ```
+
+## Examples
+
+To skip `tests/main/ack` on all systems until Jan 21, 2027, add the file `skip/skipped_test0.yaml` with the following contents:
+
+```yaml
+spread-task: tests/main/ack
+skip-until: 2027-01-21
+skip-reason: Requires a new release from Team X
+```
+
+To skip `tests/main/ack` only on Noble until Jan 21, 2027, add the file `skip/skipped_test0.yaml` with the following contents:
+
+```yaml
+spread-task: tests/main/ack
+spread-system: ubuntu-24.04-64
+skip-until: 2027-01-21
+skip-reason: Requires a new release from Team X
+```
+
+To skip `tests/main/ack` on all systems that run on openstack until Jan 21, 2027, add the file `skip/skipped_test0.yaml` with the following contents:
+
+```yaml
+spread-task: tests/main/ack
+spread-backend: openstack
+skip-until: 2027-01-21
+skip-reason: Requires a new release from Team X
+```
+
+To skip `tests/main/ack` only on Noble running on openstack until Jan 21, 2027, add the file `skip/skipped_test0.yaml` with the following contents:
+
+```yaml
+spread-task: tests/main/ack
+spread-system: ubuntu-24.04-64
+spread-backend: openstack
+skip-until: 2027-01-21
+skip-reason: Requires a new release from Team X
+```
