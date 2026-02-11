@@ -14,14 +14,14 @@ properties:
        description: 'Name of spread task as defined by spread (ex: tests/main/ack)'
    spread-system:
        type: string
-       description: 'Name of spread system (if not specified, then task will be skipped on all systems)'
+       description: 'Name of spread system as known to snapd (if not specified, then task will be skipped on all systems)'
    spread-backend:
        type: string
-       description: 'Name of spread backend (if not specified, then task will be skipped on all backends)'
+       description: 'Name of spread backend as known to snapd (if not specified, then task will be skipped on all backends)'
    skip-until:
        type: string
        format: date
-       description: 'yyyy-MM-dd'
+       description: 'Should follow YYYY-MM-DD format as defined by full-date in https://datatracker.ietf.org/doc/html/rfc3339#section-5.6'
    skip-reason:
        type: string
        description: 'Reason why test can be skipped (include Jira card if relevant)'
