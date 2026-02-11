@@ -43,11 +43,7 @@ jobs:
 
           IFS=' ' read -ra files <<< "$MODIFIED"
           for file in "${files[@]}"; do
-            if grep -q '^skip/' <<<"$file" && ! grep -qE '^skip/skipped_test[0-9]+.yaml' <<<"$file"; then
-              echo "The file, $file, does not follow the naming convention of skipped_test\${i}.yaml"
-              exit 1
-            fi
-            if grep -qE "^skip/skipped_test.*.yaml" <<<"$file"; then
+            if grep -qE "^skip/.*.yaml" <<<"$file"; then
               yamale -s schema.yaml "$file"
               expire=$(yq -r '."skip-until"' "$file")
               today=$(date "+%Y-%m-%d")
