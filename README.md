@@ -4,7 +4,7 @@ This repo contains which tests should be currently skipped in spread in the snap
 
 ## How to add a new test to skip
 
-Add a new yaml file called `skipped_test${i}.yaml` (where `i` is a positive integer) in the folder `skip` that respects the following schema:
+Add a new yaml file in the folder `skip` that respects the following schema:
 
 ```yaml
 type: object
@@ -14,14 +14,14 @@ properties:
        description: 'Name of spread task as defined by spread (ex: tests/main/ack)'
    spread-system:
        type: string
-       description: 'Name of spread system (if not specified, then task will be skipped on all systems)'
+       description: 'Name of spread system as known to snapd (if not specified, then task will be skipped on all systems)'
    spread-backend:
        type: string
-       description: 'Name of spread backend (if not specified, then task will be skipped on all backends)'
+       description: 'Name of spread backend as known to snapd (if not specified, then task will be skipped on all backends)'
    skip-until:
        type: string
        format: date
-       description: 'yyyy-MM-dd'
+       description: 'Should follow YYYY-MM-DD format as defined by full-date in https://datatracker.ietf.org/doc/html/rfc3339#section-5.6'
    skip-reason:
        type: string
        description: 'Reason why test can be skipped (include Jira card if relevant)'
@@ -31,9 +31,11 @@ required:
    - skip-reason
 ```
 
+The name of the test itself is unimportant to the skip mechanism, but should be named in a significant way. All `.yaml` files under the `skip` folder are considered tests to skip.
+
 ## Examples
 
-To skip `tests/main/ack` on all systems until Jan 21, 2027, add the file `skip/skipped_test0.yaml` with the following contents:
+To skip `tests/main/ack` on all systems until Jan 21, 2027, add the file `skip/main-ack.yaml` with the following contents:
 
 ```yaml
 spread-task: tests/main/ack
@@ -41,7 +43,7 @@ skip-until: 2027-01-21
 skip-reason: Requires a new release from Team X
 ```
 
-To skip `tests/main/ack` only on Noble until Jan 21, 2027, add the file `skip/skipped_test0.yaml` with the following contents:
+To skip `tests/main/ack` only on Noble until Jan 21, 2027, add the file `skip/main-ack.yaml` with the following contents:
 
 ```yaml
 spread-task: tests/main/ack
@@ -50,7 +52,7 @@ skip-until: 2027-01-21
 skip-reason: Requires a new release from Team X
 ```
 
-To skip `tests/main/ack` on all systems that run on openstack until Jan 21, 2027, add the file `skip/skipped_test0.yaml` with the following contents:
+To skip `tests/main/ack` on all systems that run on openstack until Jan 21, 2027, add the file `skip/main-ack.yaml` with the following contents:
 
 ```yaml
 spread-task: tests/main/ack
@@ -59,7 +61,7 @@ skip-until: 2027-01-21
 skip-reason: Requires a new release from Team X
 ```
 
-To skip `tests/main/ack` only on Noble running on openstack until Jan 21, 2027, add the file `skip/skipped_test0.yaml` with the following contents:
+To skip `tests/main/ack` only on Noble running on openstack until Jan 21, 2027, add the file `skip/main-ack.yaml` with the following contents:
 
 ```yaml
 spread-task: tests/main/ack
