@@ -36,9 +36,14 @@ jobs:
             expire=$(yq -r '."skip-until"' "$file")
             today=$(date "+%Y-%m-%d")
             if [[ "$expire" < "$today" || "$expire" == "$today" ]]; then
+                echo "Removing $file with expiration date $expire"
                 git rm "$file"
                 git commit -m "chore: remove $file"
                 echo "expired=true" >> $GITHUB_OUTPUT
+            else
+                echo "$file still valid:"
+                echo "- expiration date: $expire"
+                echo "- today's date: $today"
             fi
           done
 
@@ -55,7 +60,7 @@ jobs:
         if: ${{ steps.file-check.outputs.expired }}
         run: |
           gh pr create \
-            --title "Remove expired test skips" \
+            --title "Remove expired test skips $(date '+%Y-%m-%d')" \
             --body "" \
             --base main \
             --head "${{ steps.create-branch.outputs.branch }}"
