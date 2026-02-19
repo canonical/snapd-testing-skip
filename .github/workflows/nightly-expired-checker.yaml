@@ -48,7 +48,7 @@ jobs:
           done
 
       - name: Create branch
-        if: ${{ steps.file-check.outputs.expired }}
+        if: ${{ steps.file-check.outputs.expired == 'true' }}
         id: create-branch
         run: |
           BRANCH="chore/remove-file-$(date +%s)-${{ github.run_number }}"
@@ -57,7 +57,7 @@ jobs:
           echo "branch=$BRANCH" >> $GITHUB_OUTPUT
 
       - name: Open PR
-        if: ${{ steps.file-check.outputs.expired }}
+        if: ${{ steps.file-check.outputs.expired == 'true' }}
         run: |
           gh pr create \
             --title "Remove expired test skips $(date '+%Y-%m-%d')" \
