@@ -1,0 +1,8 @@
+spread-task: tests/main/i18n
+spread-system: ubuntu-24.04-64
+skip-until: 2026-05-01
+skip-reason: |
+  The Latvian translation is missing <> in some of its translations.
+  The suggestions have been made to add them back, but we need to
+  wait for the changes to percolate.
+  Jira ticket: https://warthogs.atlassian.net/browse/SNAPDENG-36202
