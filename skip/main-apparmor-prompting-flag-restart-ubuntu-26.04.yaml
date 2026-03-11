@@ -1,0 +1,9 @@
+spread-task: tests/main/apparmor-prompting-flag-restart
+spread-system: ubuntu-26.04-64
+skip-until: 2026-05-01
+skip-reason: |
+  There's a kernel bug on 6.17 and later which sometimes causes the kernel to
+  soft lockup when snapd is restarted with prompting enabled. This can occur
+  when doing `snap set system experimental.apparmor-prompting=false`, so all
+  prompting tests are affected.
+  Jira: https://warthogs.atlassian.net/browse/SNAPDENG-36554
