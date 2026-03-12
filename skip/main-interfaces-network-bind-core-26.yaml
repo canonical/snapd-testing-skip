@@ -1,4 +1,0 @@
-spread-task: tests/main/interfaces-network-bind
-spread-system: ubuntu-core-26-64
-skip-until: 2026-04-01
-skip-reason: The 6.19.0-6-generic kernel is missing an apparmor sauce patch (see https://bugs.launchpad.net/snapd/+bug/2141298)
