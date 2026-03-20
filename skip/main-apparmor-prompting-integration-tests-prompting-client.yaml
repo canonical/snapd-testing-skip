@@ -1,0 +1,5 @@
+spread-task: tests/main/apparmor-prompting-integration-tests
+skip-until: 2026-03-27
+skip-reason: |
+  The prompting-client was recently updated by the desktop team and a broken
+  version was pushed to stable, causing integration test variants to fail.
