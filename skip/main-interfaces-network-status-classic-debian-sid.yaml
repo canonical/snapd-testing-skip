@@ -1,7 +1,0 @@
-spread-task: tests/main/interfaces-network-status-classic
-spread-system: debian-sid-64
-skip-until: 2026-04-01
-skip-reason: |
-  The kernel feature detection is incorrect for dbus.
-  The fix will happen debian-side sometime early 2026.
-  Jira ticket: https://warthogs.atlassian.net/browse/SNAPDENG-36133
