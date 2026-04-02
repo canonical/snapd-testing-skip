@@ -1,6 +1,6 @@
 spread-task: tests/main/interfaces-network-status-classic
 spread-system: debian-sid-64
-skip-until: 2026-04-01
+skip-until: 2026-06-01
 skip-reason: |
   The kernel feature detection is incorrect for dbus.
   The fix will happen debian-side sometime early 2026.
