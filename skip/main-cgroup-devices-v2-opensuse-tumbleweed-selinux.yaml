@@ -1,0 +1,6 @@
+spread-task: tests/main/cgroup-devices-v2
+spread-system: opensuse-tumbleweed-selinux-64
+skip-until: 2026-04-15
+skip-reason: |
+  The test on selinux version of tumbleweed has denials from systemd-journal that cause the test to fail.
+  PR to fix is here https://github.com/canonical/snapd/pull/16717
