@@ -1,5 +1,0 @@
-spread-task: tests/main/snaps-state
-spread-system: ubuntu-core-26-64
-skip-until: 2026-04-03
-skip-reason: |
-  The pc-kernel in 26/beta (7.0.0-6.6) is missing apparmor patches
