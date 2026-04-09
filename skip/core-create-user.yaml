@@ -1,0 +1,5 @@
+spread-task: tests/core/create-user
+skip-until: 2026-04-13
+skip-reason: |
+  Accessing the https://login.ubuntu.com/api/v2/keys/mvo%40ubuntu.com endpoint
+  is flaky and periodically responds with a 500. Skip for a few days.
