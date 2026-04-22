@@ -1,0 +1,6 @@
+spread-task: tests/main/selinux-clean
+spread-system: centos-9-64
+skip-until: 2026-05-18
+skip-reason: |
+  /etc/systemd/user is labeled incorrectly.
+  A PR to fix is https://github.com/fedora-selinux/selinux-policy/pull/3155
