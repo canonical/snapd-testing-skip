@@ -1,0 +1,6 @@
+spread-task: tests/nested/classic/snapshots-with-core-refresh-revert
+skip-until: 2026-04-30
+skip-reason: |
+  Currently failing because this test requires that the revisions of the "core" 
+  snap released in beta and edge are different. They're the same right now. Disabling
+  until we get a real fix merged, which should swap this test to use the fake store.
