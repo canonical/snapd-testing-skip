@@ -1,6 +1,6 @@
 spread-task: tests/main/apparmor-prompting-smoke
 spread-system: ubuntu-25.10-64
-skip-until: 2026-05-01
+skip-until: 2026-06-01
 skip-reason: |
   There's a kernel bug on 6.17 and later which sometimes causes the kernel to
   soft lockup when snapd is restarted with prompting enabled. This can occur
