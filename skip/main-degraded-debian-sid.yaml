@@ -1,8 +1,0 @@
-spread-task: tests/main/degraded
-spread-system: debian-sid-64
-skip-until: 2026-05-01
-skip-reason: |
-  The libtirpc package's incorrectly does not export the rpc_gss_getcred symbol, which
-  causes nfs-mountd.service to fail with "/usr/sbin/rpc.mountd: symbol lookup error: 
-  /usr/sbin/rpc.mountd: undefined symbol: rpc_gss_getcred, version TIRPC_0.3.0"
-  Bug report: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1132199
