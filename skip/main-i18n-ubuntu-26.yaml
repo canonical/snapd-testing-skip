@@ -1,6 +1,6 @@
 spread-task: tests/main/i18n
 spread-system: ubuntu-26.04-64
-skip-until: 2026-05-01
+skip-until: 2026-07-01
 skip-reason: |
   The Latvian translation is missing <> in some of its translations.
   The suggestions have been made to add them back, but we need to
