@@ -1,0 +1,6 @@
+spread-task: tests/main/snap-seccomp-syscalls
+skip-until: 2026-05-29
+skip-reason: |
+  There are new syscalls upstream that we need to account for.
+  Since this is breaking the CI in PRs, skip it for a week to
+  give us time to evaluate the new syscalls.
