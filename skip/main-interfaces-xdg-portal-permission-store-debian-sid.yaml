@@ -1,0 +1,7 @@
+spread-task: tests/main/interfaces-xdg-portal-permission-store
+spread-system: debian-sid-64
+skip-until: 2026-07-01
+skip-reason: |
+  The kernel feature detection is incorrect for dbus.
+  We are waiting for a fix from upstream Debian.
+  Related Jira: https://warthogs.atlassian.net/browse/SNAPDENG-36133
