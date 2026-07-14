@@ -1,0 +1,7 @@
+spread-task: tests/main/degraded
+spread-system: ubuntu-22.04-64
+skip-until: 2026-07-16
+skip-reason: |
+  degraded is failing on an unrelated service. Skip
+  this for a couple days to be able to land PRs. We
+  need to make this test more robust.
