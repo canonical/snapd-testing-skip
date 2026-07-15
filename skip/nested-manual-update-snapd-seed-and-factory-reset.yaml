@@ -1,0 +1,6 @@
+spread-task: tests/nested/manual/update-snapd-seed-and-factory-reset
+spread-system: ubuntu-20.04-64
+skip-until: 2026-07-18
+skip-reason: |
+  The kernel is failing to boot. Let's skip it for a couple days while
+  someone looks into it.
