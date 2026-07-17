@@ -1,6 +1,0 @@
-spread-task: tests/nested/manual/hybrid-remodel
-spread-system: ubuntu-22.04-64
-skip-until: 2026-07-16
-skip-reason: |
-  There is a bug in the v5.0.1 AppArmor parser that results in an
-  incompatibility with the 6.5.0-44-generic kernel used in this test.
