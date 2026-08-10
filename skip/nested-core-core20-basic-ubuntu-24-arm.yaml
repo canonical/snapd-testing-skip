@@ -1,0 +1,6 @@
+spread-task: tests/nested/core/core20-basic
+spread-system: ubuntu-24.04-arm-64
+skip-until: 2026-09-01
+skip-reason: |
+  The test is failing due to move to openstack. 
+  PR to fix: https://github.com/canonical/snapd/pull/17417
