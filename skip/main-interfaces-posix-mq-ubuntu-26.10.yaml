@@ -1,0 +1,13 @@
+spread-task: tests/main/interfaces-posix-mq
+spread-system: ubuntu-26.10-64
+skip-until: 2026-09-07
+skip-reason: |
+  The failure is due to a snap warning from during the initial preparation.
+  snapd.apparmor.service starts after snapd checks for its enablement and
+  logs an error. This was fixed in 
+  https://github.com/canonical/snapd/commit/01b08bb222 and included in 2.77. 
+  Since spread uses the snapd deb from the archive, the issue will not be 
+  fixed until 2.77 reaches stable (which is planned for Sept 7 
+  https://forum.snapcraft.io/t/the-snapd-roadmap/1973). The issue will be
+  fixed then since the test passes when run with 
+  SPREAD_SNAPD_DEB_FROM_REPO=false.
