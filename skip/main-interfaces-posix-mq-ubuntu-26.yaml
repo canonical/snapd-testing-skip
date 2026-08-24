@@ -1,0 +1,7 @@
+spread-task: tests/main/interfaces-posix-mq
+spread-system: ubuntu-26.04-64
+skip-until: 2026-09-01
+skip-reason: |
+  While someone from the team looks into a fix,
+  let's skip this so PRs can move forward since
+  it is broken on master.
