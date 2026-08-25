@@ -1,4 +1,4 @@
 spread-task: tests/main/interfaces-location-control
-skip-until: 2026-08-26
+skip-until: 2026-08-29
 skip-reason: |
   The snap needs to be updated after https://github.com/canonical/snapd/pull/17521
