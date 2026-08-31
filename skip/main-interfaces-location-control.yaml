@@ -1,4 +1,6 @@
 spread-task: tests/main/interfaces-location-control
-skip-until: 2026-08-29
+skip-until: 2026-09-04
 skip-reason: |
-  The snap needs to be updated after https://github.com/canonical/snapd/pull/17521
+  The test is currently failing on all systems due to dbus errors
+  and needs further investigation.
+  Jira ticket: https://warthogs.atlassian.net/browse/SNAPDENG-37447
