@@ -1,0 +1,7 @@
+spread-task: tests/main/mount-ns
+spread-system: ubuntu-18.04-64
+spread-backend: openstack
+skip-until: 2026-09-08
+skip-reason: |
+  With the change of backend from google to openstack the test is broken as it
+  needs some pre-recorded data for each test backend.
