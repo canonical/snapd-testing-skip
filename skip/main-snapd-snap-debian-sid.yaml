@@ -1,0 +1,9 @@
+spread-task: tests/main/snapd-snap
+spread-system: debian-sid-64
+skip-until: 2026-09-18
+skip-reason: |
+  This runs in github-hosted runners using garden.
+  It's been broken ever since it was added. Let's skip it
+  while we work on fixing it. Jira ticket: 
+  https://warthogs.atlassian.net/browse/SNAPDENG-37495
+  

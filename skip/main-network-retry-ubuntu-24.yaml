@@ -1,0 +1,9 @@
+spread-task: tests/main/network-retry
+spread-system: ubuntu-24.04-64
+skip-until: 2026-09-18
+skip-reason: |
+  This runs in github-hosted runners using garden.
+  The nsswitch.conf file in the garden VMs has a mymachine
+  entry after the dns module, which causes the wrong error
+  to be sent to snapd. Let's skip while we work on a fix.
+  Jira ticket: https://warthogs.atlassian.net/browse/SNAPDENG-37496
