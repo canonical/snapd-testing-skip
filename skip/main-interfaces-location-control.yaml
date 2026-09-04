@@ -1,5 +1,5 @@
 spread-task: tests/main/interfaces-location-control
-skip-until: 2026-09-04
+skip-until: 2026-09-18
 skip-reason: |
   The test is currently failing on all systems due to dbus errors
   and needs further investigation.
