@@ -1,0 +1,6 @@
+spread-task: tests/nested/manual/recovery-mode-failures
+skip-until: 2026-09-15
+skip-reason: |
+  This test currently compiles ubuntu-image against the PR's version of snapd.
+  This doesn't work right now, so we need to skip it until we have the systems
+  in place to prevent this from happening in the future.
