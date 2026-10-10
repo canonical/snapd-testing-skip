@@ -1,4 +1,0 @@
-spread-task: tests/main/nvidia-files
-skip-until: 2026-10-10
-skip-reason: |
-  This is already fixed but we don't want to have to rebase PRs.
