@@ -1,3 +1,0 @@
-spread-task: tests/main/interfaces-podman
-skip-until: 2026-10-09
-skip-reason: rocks.canonical.com is currently returning an error.
