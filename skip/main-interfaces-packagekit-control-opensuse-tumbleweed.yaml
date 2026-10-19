@@ -1,5 +1,0 @@
-spread-task: tests/main/interfaces-packagekit-control
-spread-system: opensuse-tumbleweed-64
-skip-until: 2026-10-19
-skip-reason: |
-  Fixed by https://github.com/canonical/snapd/pull/17813
