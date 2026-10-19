@@ -1,5 +1,0 @@
-spread-task: tests/regression/lp-1871652
-spread-system: ubuntu-24.04-64
-skip-until: 2026-10-19
-skip-reason: |
-  Failing due to pushing snap binary to lxd host. Needs a fix
