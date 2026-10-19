@@ -1,4 +1,0 @@
-spread-task: tests/main/lxd
-skip-until: 2026-10-19
-skip-reason: |
-  Fixed by https://github.com/canonical/snapd/pull/17831
