@@ -1,0 +1,8 @@
+spread-task: tests/unit/go
+spread-system: debian-12-64
+skip-until: 2026-11-23
+skip-reason: |
+  The test deadlocks. Let's skip it
+  while we work on fixing it. Jira ticket:
+  https://warthogs.atlassian.net/browse/SNAPDENG-37978
+  
