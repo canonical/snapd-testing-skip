@@ -1,0 +1,8 @@
+spread-task: tests/core/remodel-base
+spread-system: ubuntu-core-18-64
+skip-until: 2026-11-27
+skip-reason: |
+  The test is broken due to a gadget update that broken
+  single reboot assumptions in the test. Maciej is working
+  on a fix.
+  
